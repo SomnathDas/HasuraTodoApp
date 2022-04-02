@@ -39,16 +39,18 @@ const TodoInput = ({ isPublic = false }) => {
     onCompleted: resetInput,
   });
 
-  let reWhiteSpace = new RegExp("\\s+");
+  function isBlank(str) {
+    return !str || /^\s*$/.test(str);
+  }
 
   return (
     <form
       className="formInput"
       onSubmit={(e) => {
         e.preventDefault();
-        todoInput.length > 0 && todoInput.test(reWhiteSpace)
-          ? addTodo({ variables: { todo: todoInput, isPublic } })
-          : 0;
+        isBlank(todoInput)
+          ? 0
+          : addTodo({ variables: { todo: todoInput, isPublic } });
       }}
     >
       <input
