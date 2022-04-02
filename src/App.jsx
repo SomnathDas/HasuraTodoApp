@@ -37,7 +37,7 @@ function App() {
     );
   }
 
-  if (!idToken && !isAuthenticated) {
+  if (!idToken) {
     return <LoginButton />;
   }
   return (
